@@ -7,9 +7,12 @@ import Blog from './Common/Blog';
 import Footer from './Common/Footer';
 import Courses from './Components/Courses';
 import Singlecourse from './Components/Singlecourse';
+import { RouterProvider } from 'react-router-dom';
+import routes from './Roots/Rootpath'
 function App() {
   return (
     <div >
+      <RouterProvider router={routes} ></RouterProvider>
       {/* <Navbar></Navbar> */}
       {/* <Login></Login> */}
       {/* <Register></Register> */}
