@@ -1,9 +1,19 @@
 import React from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 const Register = () => {
+    const handleregister = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        console.log(form);
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const photoUrl = form.image;
+        console.log(name, email, password, photoUrl);
+    }
     return (
         <div className='w-1/2 mx-auto bg-gray-100 '>
-            <form className='m-8'>
+            <form onSubmit={handleregister} className='m-8'>
                 <p className='text-center pt-5 font-black text-4xl'>Register Form !!</p>
                 <div className="mb-6 pt-5">
                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 ">Your Name</label>
@@ -11,14 +21,14 @@ const Register = () => {
                 </div>
                 <div className="mb-6 ">
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email" required />
+                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="email" required />
                 </div>
                 <div className="mb-6 mt-5">
                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
-                    <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                    <input type="password" id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                 </div>
                 <div>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 " htmlFor="user_avatar">Upload Photo</label>
+                    <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900 " id="user_avatar">Upload Photo</label>
                     <input className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none  dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" />
                 </div>
                 <div className="flex items-start mb-6 mt-2">
