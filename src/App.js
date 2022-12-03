@@ -6,6 +6,7 @@ import Register from './Form/Register';
 import Blog from './Common/Blog';
 import Footer from './Common/Footer';
 import Courses from './Components/Courses';
+import Singlecourse from './Components/Singlecourse';
 function App() {
   return (
     <div >
@@ -14,7 +15,8 @@ function App() {
       {/* <Register></Register> */}
       {/* <Blog></Blog> */}
       {/* <Footer></Footer> */}
-      <Courses></Courses>
+      {/* <Courses></Courses> */}
+      {/* <Singlecourse></Singlecourse> */}
     </div>
   );
 }
