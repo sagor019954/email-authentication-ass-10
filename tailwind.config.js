@@ -5,6 +5,31 @@ module.exports = {
   ],
   theme: {
     extend: {},
+  }, daisyui: {
+    themes: [
+      {
+        mytheme: {
+
+          primary: "#fef08a",
+
+          secondary: "#d15987",
+
+          accent: "#f9a781",
+
+          neutral: "#222835",
+
+          "base-100": "#f3f4f6",
+
+          info: "#2D96E6",
+
+          success: "#5FDD9C",
+
+          warning: "#F3CE68",
+
+          error: "#F52469",
+        },
+      },
+    ],
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 }
