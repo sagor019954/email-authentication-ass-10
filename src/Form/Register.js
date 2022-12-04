@@ -1,25 +1,63 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { AuthContext } from '../Authcontext/Authfile'
+
 const Register = () => {
     const [photo, setPhoto] = useState('')
+    const handlechange = (event) => {
+        const photo = event.target.value;
+        setPhoto(photo);
+    }
+
+    const { createEmail, verifyEmail, updateUserProfile } = useContext(AuthContext)
     const handleregister = (event) => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        console.log(email, password);
+        createEmail(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                handleEmailVerification()
+                handleUpdateUserProfile(name, photo)
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
     }
-    const handlechange = (event) => {
-        const photo = event.target.value;
-        setPhoto(photo);
+
+    const handleEmailVerification = () => {
+        verifyEmail()
+            .then(() => { })
+            .catch(error => console.error(error));
     }
+
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
+    }
+
+
+
     return (
         <div className='w-1/2 mx-auto bg-gray-100 '>
             <form onSubmit={handleregister} className='m-8'>
                 <p className='text-center pt-5 font-black text-4xl'>Register Form !!</p>
                 <div className="mb-6 pt-5">
                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 ">Your Name</label>
-                    <input type="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name" required />
+                    <input type="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name" required />
                 </div>
                 <div className="mb-6 ">
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
@@ -31,7 +69,7 @@ const Register = () => {
                 </div>
                 <div>
                     <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900 " id="user_avatar">Upload Photo</label>
-                    <input onChange={handlechange} className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none  dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" />
+                    <input onChange={handlechange} name="photoUrl" placeholder='Please give photo Url ' className="block p-2 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none  dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="name" />
                 </div>
                 <div className="flex items-start mb-6 mt-2">
                     <div className="flex items-center h-5">

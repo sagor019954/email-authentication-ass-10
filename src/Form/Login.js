@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
+import { AuthContext } from '../Authcontext/Authfile';
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext)
+
     const handlelogin = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        signIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+            })
     }
     return (
         <div className='w-1/2 mx-auto bg-gray-100 '>
@@ -14,7 +24,7 @@ const Login = () => {
                 <p className='text-center pt-5 font-black text-4xl'>Log In  !!</p>
                 <div className="mb-6 pt-5">
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
+                    <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required />
                 </div>
                 <div className="mb-6 mt-5">
                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
