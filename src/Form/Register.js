@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 const Register = () => {
+    const [photo, setPhoto] = useState('')
     const handleregister = (event) => {
         event.preventDefault();
         const form = event.target;
-        console.log(form);
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const photoUrl = form.image;
-        console.log(name, email, password, photoUrl);
+    }
+    const handlechange = (event) => {
+        const photo = event.target.value;
+        setPhoto(photo);
     }
     return (
         <div className='w-1/2 mx-auto bg-gray-100 '>
@@ -29,7 +31,7 @@ const Register = () => {
                 </div>
                 <div>
                     <label htmlFor="" className="block mb-2 text-sm font-medium text-gray-900 " id="user_avatar">Upload Photo</label>
-                    <input className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none  dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" />
+                    <input onChange={handlechange} className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none  dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file" />
                 </div>
                 <div className="flex items-start mb-6 mt-2">
                     <div className="flex items-center h-5">
