@@ -1,6 +1,8 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { AuthContext } from '../Authcontext/Authfile'
+import { AiOutlineGoogle } from "react-icons/ai";
 
 const Register = () => {
     const [photo, setPhoto] = useState('')
@@ -9,7 +11,7 @@ const Register = () => {
         setPhoto(photo);
     }
 
-    const { createEmail, verifyEmail, updateUserProfile } = useContext(AuthContext)
+    const { createEmail, verifyEmail, updateUserProfile, googleRegister } = useContext(AuthContext)
     const handleregister = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -37,7 +39,7 @@ const Register = () => {
             .catch(error => console.error(error));
     }
 
-
+    //profile updated
     const handleUpdateUserProfile = (name, photoURL) => {
         const profile = {
             displayName: name,
@@ -48,11 +50,24 @@ const Register = () => {
             .then(() => { })
             .catch(error => console.error(error));
     }
+    //Register by google
+    const provider = new GoogleAuthProvider();
 
+    const googleSignin = () => {
+
+        googleRegister(provider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 
 
     return (
-        <div className='w-1/2 mx-auto bg-gray-100 '>
+        <div className='w-1/2 mx-auto bg-gray-300 '>
             <form onSubmit={handleregister} className='m-8'>
                 <p className='text-center pt-5 font-black text-4xl'>Register Form !!</p>
                 <div className="mb-6 pt-5">
@@ -75,13 +90,14 @@ const Register = () => {
                     <div className="flex items-center h-5">
                         <input id="terms" type="checkbox" value="" className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
                     </div>
-                    <label htmlFor="terms" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
+                    <label htmlFor="terms" className="ml-2 text-sm font-medium text-gray-900">I agree with the <a href="#" className="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
                 </div>
                 <div className='flex  place-content-between pb-5'>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login<BsFillArrowRightCircleFill className='inline ml-5'></BsFillArrowRightCircleFill></button>
                 </div>
             </form>
+            <button onClick={googleSignin} className=" mb-5 ml-6 p-2 rounded-md border-sold border-3 bg-blue-700"><p className='text-white'>Register With Google <AiOutlineGoogle className='inline w-12 '></AiOutlineGoogle></p></button>
         </div>
     );
 };

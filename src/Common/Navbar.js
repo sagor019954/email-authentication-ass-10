@@ -42,6 +42,7 @@ const Navbar = () => {
                         <div className='m-2'>
                             <Link to="/login">  <button className="btn m-2 text-white btn-primary">Login</button></Link>
                             <Link to="/register">  <button className="btn text-white  btn-secondary">Register</button></Link>
+                            <button className="btn pl-1 text-white  btn-secondary">Log Out</button>
                         </div>
                     </div>
                     <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="mobile-menu-2">

@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth'
 import app from '../Context/firebase.config';
 
 export const AuthContext = createContext()
@@ -37,8 +37,15 @@ const Authfile = ({ children }) => {
         }
 
     }, [])
+    //Register by Google
+    const googleRegister = (provider) => {
+        return signInWithPopup(auth, provider)
+    }
+
+
+
     // console.log(user);
-    const authInfo = { user, createEmail, verifyEmail, signIn, updateUserProfile }
+    const authInfo = { user, createEmail, verifyEmail, signIn, updateUserProfile, googleRegister }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
