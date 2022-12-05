@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { AuthContext } from '../Authcontext/Authfile'
 import { AiOutlineGoogle } from "react-icons/ai";
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const [photo, setPhoto] = useState('')
@@ -22,7 +23,6 @@ const Register = () => {
         createEmail(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 form.reset();
                 handleEmailVerification()
                 handleUpdateUserProfile(name, photo)
@@ -35,7 +35,8 @@ const Register = () => {
 
     const handleEmailVerification = () => {
         verifyEmail()
-            .then(() => { })
+            .then(() => {
+            })
             .catch(error => console.error(error));
     }
 
@@ -67,7 +68,7 @@ const Register = () => {
 
 
     return (
-        <div className='w-1/2 mx-auto bg-gray-300 '>
+        <div className='lg:w-1/2 sm:w-full mx-auto bg-gray-300 '>
             <form onSubmit={handleregister} className='m-8'>
                 <p className='text-center pt-5 font-black text-4xl'>Register Form !!</p>
                 <div className="mb-6 pt-5">
@@ -94,7 +95,6 @@ const Register = () => {
                 </div>
                 <div className='flex  place-content-between pb-5'>
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
-                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login<BsFillArrowRightCircleFill className='inline ml-5'></BsFillArrowRightCircleFill></button>
                 </div>
             </form>
             <button onClick={googleSignin} className=" mb-5 ml-6 p-2 rounded-md border-sold border-3 bg-blue-700"><p className='text-white'>Register With Google <AiOutlineGoogle className='inline w-12 '></AiOutlineGoogle></p></button>

@@ -7,18 +7,21 @@ export const AuthContext = createContext()
 const auth = getAuth(app)
 const Authfile = ({ children }) => {
     const [user, setUser] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     const createEmail = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
     //  verifiemail
 
     const verifyEmail = () => {
+        setLoading(true)
         return sendEmailVerification(auth.currentUser);
     }
     //  sigin in 
     const signIn = (email, password) => {
-
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password);
     }
     //update profile
@@ -30,6 +33,7 @@ const Authfile = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             // console.log('inside auth state change', currentUser);
             setUser(currentUser)
+            setLoading(false)
         });
 
         return () => {
@@ -39,6 +43,7 @@ const Authfile = ({ children }) => {
     }, [])
     //Register by Google
     const googleRegister = (provider) => {
+        setLoading(true)
         return signInWithPopup(auth, provider)
     }
     //Sing Our
@@ -48,7 +53,7 @@ const Authfile = ({ children }) => {
 
 
     // console.log(user);
-    const authInfo = { user, createEmail, verifyEmail, signIn, updateUserProfile, googleRegister, logOut }
+    const authInfo = { user, loading, createEmail, verifyEmail, signIn, updateUserProfile, googleRegister, logOut }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

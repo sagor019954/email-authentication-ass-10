@@ -18,7 +18,7 @@ const Courses = () => {
                 <Coursecontainer></Coursecontainer>
             </div>
             <div className='  flex
-            grid grid-cols-3 gap-4'>
+            grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4'>
                 {
                     allcor.map(cor =>
                         <div key={cor.id} className="card m-5 text-white card-compact  bg-gray-900 shadow-xl">
