@@ -19,7 +19,7 @@ const Login = () => {
             })
     }
     return (
-        <div className='w-1/2 mx-auto bg-gray-100 '>
+        <div className='w-1/2 mx-auto bg-gray-300 '>
             <form onSubmit={handlelogin} className='m-8'>
                 <p className='text-center pt-5 font-black text-4xl'>Log In  !!</p>
                 <div className="mb-6 pt-5">
