@@ -35,14 +35,14 @@ const Navbar = () => {
                         <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <span className="sr-only">Open user menu</span>
                             {
-                                user?.emailVerified ? <>   <img className="w-8 h-8 rounded-full" src={user.photoURL} alt="user photo" /></>
+                                user?.uid ? <>   <img className="w-8 h-8 rounded-full" src={user.photoURL} alt="user photo" /></>
                                     : <> <HiOutlineUserCircle className='text-white m-2'></HiOutlineUserCircle></>
                             }
                         </button>
                         <div className='m-2'>
 
                             {
-                                user?.emailVerified ? <> <button onClick={handleSingout} className="btn pl-1 text-white  btn-secondary">Sign Out</button></>
+                                user?.uid ? <> <button onClick={handleSingout} className="btn pl-1 text-white  btn-secondary">Sign Out</button></>
                                     : <>  <Link to="/login">  <button className="btn m-2 text-white btn-primary">Login</button></Link>
                                         <Link to="/register">  <button className="btn text-white  btn-secondary">Register</button></Link></>
                             }

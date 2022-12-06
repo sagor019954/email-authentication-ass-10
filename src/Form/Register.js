@@ -1,8 +1,8 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import { AuthContext } from '../Authcontext/Authfile'
-import { AiOutlineGoogle } from "react-icons/ai";
+import { AiOutlineGoogle, AiFillGithub } from "react-icons/ai";
 import { toast } from 'react-toastify';
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
         setPhoto(photo);
     }
 
-    const { createEmail, verifyEmail, updateUserProfile, googleRegister } = useContext(AuthContext)
+    const { createEmail, verifyEmail, updateUserProfile, googleRegister, githubRegister } = useContext(AuthContext)
     const handleregister = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -65,6 +65,19 @@ const Register = () => {
                 console.error(error);
             })
     }
+    //Register by github
+
+    const gitProvider = new GithubAuthProvider()
+    const gitSignin = () => {
+        githubRegister(gitProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error('error', error)
+            })
+    }
 
 
     return (
@@ -97,7 +110,8 @@ const Register = () => {
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
                 </div>
             </form>
-            <button onClick={googleSignin} className=" mb-5 ml-6 p-2 rounded-md border-sold border-3 bg-blue-700"><p className='text-white'>Register With Google <AiOutlineGoogle className='inline w-12 '></AiOutlineGoogle></p></button>
+            <button onClick={googleSignin} className=" mb-5 ml-6 p-2 rounded-md border-sold border-3 bg-blue-700"><p className='text-white'>Register With Google <AiOutlineGoogle className='inline w-12 h-6 '></AiOutlineGoogle></p></button>
+            <button onClick={gitSignin} className=" mb-5 ml-6 p-2 rounded-md border-sold border-3 bg-blue-700"><p className='text-white'>Register With Github <AiFillGithub className='inline w-12 h-6'></AiFillGithub></p></button>
         </div>
     );
 };

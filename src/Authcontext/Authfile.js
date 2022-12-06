@@ -46,6 +46,14 @@ const Authfile = ({ children }) => {
         setLoading(true)
         return signInWithPopup(auth, provider)
     }
+    //Register by github
+    const githubRegister = (gitProvider) => {
+        setLoading(true)
+        return signInWithPopup(auth, gitProvider)
+    }
+
+
+
     //Sing Our
     const logOut = () => {
         return signOut(auth)
@@ -53,7 +61,7 @@ const Authfile = ({ children }) => {
 
 
     // console.log(user);
-    const authInfo = { user, loading, createEmail, verifyEmail, signIn, updateUserProfile, googleRegister, logOut }
+    const authInfo = { user, loading, createEmail, verifyEmail, signIn, updateUserProfile, googleRegister, logOut, githubRegister }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
