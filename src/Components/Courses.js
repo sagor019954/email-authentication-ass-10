@@ -7,7 +7,7 @@ const Courses = () => {
     const [allcor, setAllcor] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allcourses')
+        fetch('https://learnig-platform-data-server.vercel.app/allcourses')
             .then(res => res.json())
             .then(data => setAllcor(data))
     }, [])

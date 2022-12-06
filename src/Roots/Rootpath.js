@@ -1,5 +1,6 @@
 import { createBrowserRouter, Router } from "react-router-dom";
 import Blog from "../Common/Blog";
+import Errorpage from "../Common/Errorpage";
 import Home from "../Common/Home";
 import Courses from "../Components/Courses";
 import Singlecourse from "../Components/Singlecourse";
@@ -11,6 +12,7 @@ import Privateroute from "./Privateroute";
 const routes = createBrowserRouter([{
     path: '/',
     element: <Layout></Layout>,
+    errorElement: <Errorpage></Errorpage>,
     children: [
         {
             path: "/",
@@ -36,7 +38,7 @@ const routes = createBrowserRouter([{
         {
             path: '/courses/:id',
             element: <Privateroute><Singlecourse></Singlecourse></Privateroute>,
-            loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+            loader: ({ params }) => fetch(`https://learnig-platform-data-server.vercel.app/courses/${params.id}`)
         }
     ]
 }])

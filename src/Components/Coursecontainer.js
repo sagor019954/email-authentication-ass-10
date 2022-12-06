@@ -5,7 +5,7 @@ const Coursecontainer = () => {
     const [course, setCourse] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allcourses')
+        fetch('https://learnig-platform-data-server.vercel.app/allcourses')
             .then(res => res.json())
             .then(data => setCourse(data))
     }, [])

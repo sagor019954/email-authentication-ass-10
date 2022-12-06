@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCgOeNHP49ALOjW4jthfR8brWR5Qt5Wd0I",
-    authDomain: "grema-learning.firebaseapp.com",
-    projectId: "grema-learning",
-    storageBucket: "grema-learning.appspot.com",
-    messagingSenderId: "92982211228",
-    appId: "1:92982211228:web:37abbcd66e25bb6f99b359"
+    apiKey: process.env.REACT_APP_APIKEY,
+    authDomain: process.env.REACR_APP_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_PROJECTID,
+    storageBucket: process.env.REACT_APP_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
+    appId: process.env.REACT_APP_APPID
 };
 
 // Initialize Firebase
